@@ -52,18 +52,17 @@ public class UsuariosBean implements java.io.Serializable{
         String pasahitza=UsuariosDao.Login(username);
         if(pasahitza!=null && pasahitza.equals(password)){
             loggedIn=true;
-            return "inicio";
-           // message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hola", username);
-            //FacesContext.getCurrentInstance().addMessage(null, message);
-            //context.addCallbackParam("loggedIn", loggedIn);
-            
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hola", username);
+            FacesContext.getCurrentInstance().addMessage(null, message);            
+            context.addCallbackParam("loggedIn", loggedIn);
+            return "inicio";         
         } else {
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
         }        
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
-        return "failure";
+        return "index";
     }
     
 }
