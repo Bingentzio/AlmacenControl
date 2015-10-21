@@ -52,6 +52,13 @@
     margin-left: 90%;
 }
 
+.hiruBotoiak{
+    margin-top: 3%;
+    font-size: 10px;
+}
+
+
+
 @media screen and (min-width: 1140px) {
     main, .header__inner, .content {
         width: 1140px;
