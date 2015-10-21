@@ -48,6 +48,9 @@
 .right{
     text-align: right;
 }
+.right_button{
+    margin-left: 90%;
+}
 
 @media screen and (min-width: 1140px) {
     main, .header__inner, .content {
@@ -55,10 +58,37 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+}
+@media screen and (max-width: 850px) {
+       .header__logo {
+        height: 60px;
+        margin-right: 0.5em;
+    }
+    .header__title {
+        margin-left: 0;
+        font-size: 4em;
+        vertical-align: bottom; 
+    }
+    .bottom{
+        font-size: 9px;
+        height: 15px;
+        padding: 4px;
+
+    }
+    body{
+      font-size: 10px;
+    }
+    .login{
+        width: 240px;
+    }
+    .right_button{
+    margin-left: 80%;
 }
 
+}
 
-@media screen and (max-width: 549px) {
+@media screen and (max-width: 500px) {
     .header__logo {
         height: 48px;
         margin-right: 0.5em;
@@ -75,9 +105,13 @@
 
     }
     body{
-            font-size: 8px;
+      font-size: 8px;
     }
     .login{
         width: 200px;
     }
+    .right_button{
+    margin-left: 70%;
+}
+
 }

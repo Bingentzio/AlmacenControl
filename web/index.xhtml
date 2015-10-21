@@ -29,7 +29,7 @@
                                 <div class="right">
                                     <p:commandButton id="loginButton" value="Login" 
                                                      action="#{usuariosBean.doLogin(event)}" update=":mensajes"
-                                                     oncomplete="manejarLogin(xhr, status, args)" />
+                                                      />
                                 </div>
                             </f:facet>
                         </h:panelGrid>
@@ -38,16 +38,5 @@
             </ui:define>
         </ui:composition>
     </h:body>
-    <script type="text/javascript">
-        //<![CDATA[
-        function manejarLogin(xhr, status, args) {
-            if (!args.validationFailed && args.estaLogeado) {
-                setTimeout(function () {
-                    window.location = args.view;
-                }, 500);
-            }
-        }
-        //]]>
-    </script>
 </html>
 

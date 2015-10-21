@@ -13,6 +13,12 @@
         <ui:composition template="newTemplate.xhtml">
             <ui:define name="content">
                 <h:form>
+                   
+                    <h:panelGrid  columns="2" cellpadding="5"  class="right_button">  
+                                <p:commandButton  icon="ui-icon-person"/>
+                            <p:commandButton  icon="ui-icon-power"/>
+                    </h:panelGrid>
+                        
                     <h:panelGrid columns="1" cellpadding="0" width="100%">
                         <p:tabMenu>
                             <p:menuitem value="Almacén" action="#{productoBean.menu(1)}" icon="ui-icon-home"/>
@@ -20,10 +26,8 @@
                             <p:menuitem value="Salidas" action="#{productoBean.menu(3)}" icon="ui-icon-circle-arrow-n"/>
                             <p:menuitem value="Historial" action="#{productoBean.menu(4)}" icon="ui-icon-search" />
                         </p:tabMenu>
-                    </h:panelGrid>
-                            <h:panelGrid class="right" width="100%"  columns="1" cellpadding="0">  
-                            <p:commandButton icon="ui-icon-power"/>
-                    </h:panelGrid>
+                                        </h:panelGrid>
+
                 </h:form>
             </ui:define>
         </ui:composition>
