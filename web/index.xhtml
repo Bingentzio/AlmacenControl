@@ -19,23 +19,17 @@
             <ui:define name="content">
                 <p:growl id="mensajes" showDetail="true" life="2000" />
                 <h:form class="login">
-                    <p:panel header="Login" >
-                        <h:panelGrid columns="2" cellpadding="5">
+                    <p:panel  header="Login" >
+                        <h:panelGrid   columns="2" cellpadding="5">
                             <h:outputLabel for="username" value="Usuario:" />
-                            <p:inputText value="#{usuariosBean.username}" id="username"
-                                         required="true" label="username" />
+                            <p:inputText value="#{usuariosBean.username}" id="username" required="true" label="username" />
                             <h:outputLabel for="password" value="Clave:" />
-                            <p:password value="#{usuariosBean.password}" id="password" required="true"
-                                        label="password" />
-
+                            <p:password value="#{usuariosBean.password}" id="password" required="true" label="password" />
                             <f:facet name="footer" >
                                 <div class="right">
-                                    <p:commandButton id="loginButton" value="Login" 
-                                                     action="#{usuariosBean.doLogin(event)}" update=":mensajes"
-                                                     oncomplete="manejarLogin(xhr, status, args)" />
+                                    <p:commandButton id="loginButton" value="Login" action="#{usuariosBean.doLogin(event)}" update=":mensajes"/>
                                 </div>
                             </f:facet>
-
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
@@ -45,16 +39,5 @@
 
 
     </h:body>
-    <script type="text/javascript">
-        //<![CDATA[
-        function manejarLogin(xhr, status, args) {
-            if (!args.validationFailed && args.estaLogeado) {
-                setTimeout(function () {
-                    window.location = args.view;
-                }, 500);
-            }
-        }
-        //]]>
-    </script>
 </html>
 

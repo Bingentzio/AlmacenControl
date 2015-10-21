@@ -64,5 +64,8 @@ public class UsuariosBean implements java.io.Serializable{
         context.addCallbackParam("loggedIn", loggedIn);
         return "index";
     }
-    
+        //saioa amaitzen da botoia sakatzean
+    public void logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
 }

@@ -21,21 +21,37 @@ public class ProductoBean implements java.io.Serializable {
      */
     public ProductoBean() {
     }
+    
+    private int myActiveIndex;
+
+    public int getMyActiveIndex() {
+        return myActiveIndex;
+    }
+
+    public void setMyActiveIndex(int myActiveIndex) {
+        this.myActiveIndex = myActiveIndex;
+    }
+    
+    
 
     public String menu(Integer i) {
         String orria = null;
         switch (i) {
             case 1:
                 orria = "inicio";
+                myActiveIndex=0;
                 break;
             case 2:
                 orria = "entradas";
+                myActiveIndex=1;
                 break;
             case 3:
                 orria = "salidas";
+                myActiveIndex=2;
                 break;
             case 4:
                 orria = "historial";
+                myActiveIndex=3;
                 break;
         }
         return orria;

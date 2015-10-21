@@ -1,27 +1,27 @@
 .header {
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.26);
-  min-height: 56px;
-  transition: min-height 0.3s;
-  text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.26);
+    min-height: 56px;
+    transition: min-height 0.3s;
+    text-align: center;
 }
 
 .header__inner {
-  width: 100%;
+    width: 100%;
 }
 
 .header__logo {
-  height: 72px;
-  margin-right: 1em;
-  vertical-align: top;
-  margin-top: 12px;
+    height: 90px;
+    margin-right: 1em;
+    vertical-align: top;
+    margin-top: 12px;
 }
 
 .header__title {
-  font-weight: 300;
-  font-size: 4em;
-  margin: 0.5em 0.25em;
-  display: inline-block;
-  color: #212121;
+    font-weight: 300;
+    font-size: 4em;
+    margin: 0.5em 0.25em;
+    display: inline-block;
+    color: #212121;
 }
 
 .bottom {
@@ -48,24 +48,68 @@
 .right{
     text-align: right;
 }
-
-@media screen and (min-width: 1240px) {
-  main, .header__inner, .content {
-    width: 1240px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.right_button{
+    margin-left: 90%;
 }
 
+@media screen and (min-width: 1140px) {
+    main, .header__inner, .content {
+        width: 1140px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-@media screen and (max-width: 549px) {
-  .header__logo {
-    height: 48px;
-    margin-right: 0.5em;
-  }
-  .header__title {
-    margin-left: 0;
-    font-size: 2em;
-    vertical-align: bottom; 
-  }
+}
+@media screen and (max-width: 850px) {
+       .header__logo {
+        height: 60px;
+        margin-right: 0.5em;
+    }
+    .header__title {
+        margin-left: 0;
+        font-size: 4em;
+        vertical-align: bottom; 
+    }
+    .bottom{
+        font-size: 9px;
+        height: 15px;
+        padding: 3px;
+    }
+    body{
+      font-size: 10px;
+    }
+    .login{
+        width: 240px;
+    }
+    .right_button{
+    margin-left: 80%;
+}
+
+}
+
+@media screen and (max-width: 500px) {
+    .header__logo {
+        height: 48px;
+        margin-right: 0.5em;
+    }
+    .header__title {
+        margin-left: 0;
+        font-size: 2em;
+        vertical-align: bottom; 
+    }
+    .bottom{
+        font-size: 7px;
+        height: 12px;
+        padding: 2px;
+
+    }
+    body{
+      font-size: 8px;
+    }
+    .login{
+        width: 200px;
+    }
+    .right_button{
+    margin-left: 70%;
+}
 }
