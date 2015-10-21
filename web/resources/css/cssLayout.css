@@ -68,4 +68,16 @@
         font-size: 2em;
         vertical-align: bottom; 
     }
+    .bottom{
+        font-size: 7px;
+        height: 12px;
+        padding: 2px;
+
+    }
+    body{
+            font-size: 8px;
+    }
+    .login{
+        width: 200px;
+    }
 }
