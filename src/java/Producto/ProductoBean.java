@@ -14,12 +14,31 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ProductoBean implements java.io.Serializable{
+public class ProductoBean implements java.io.Serializable {
 
     /**
      * Creates a new instance of ProductoBean
      */
     public ProductoBean() {
     }
-    
+
+    public String menu(Integer i) {
+        String orria = null;
+        switch (i) {
+            case 1:
+                orria = "inicio";
+                break;
+            case 2:
+                orria = "entradas";
+                break;
+            case 3:
+                orria = "salidas";
+                break;
+            case 4:
+                orria = "historial";
+                break;
+        }
+        return orria;
+    }
+
 }

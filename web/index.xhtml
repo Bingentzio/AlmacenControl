@@ -5,41 +5,49 @@
     xmlns:h="http://java.sun.com/jsf/html"  
     xmlns:f="http://java.sun.com/jsf/core"  
     xmlns:p="http://primefaces.org/ui" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"> 
     > 
-    <h:head>
+    <h:head>      
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Almacén</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css" />
     </h:head>
     <h:body>
-
-     <p:growl id="mensajes" showDetail="true" life="2000" />
-  <h:form>
-    <p:panel header="Login" >
-      <h:panelGrid columns="2" cellpadding="5">
-        <h:outputLabel for="username" value="Usuario:" />
-        <p:inputText value="#{usuariosBean.username}" id="username"
-           required="true" label="username" />
-        <h:outputLabel for="password" value="Clave:" />
-        <p:password value="#{usuariosBean.password}" id="password" required="true"
-           label="password" />
-        <f:facet name="footer">
-          <p:commandButton id="loginButton" value="Login"
-                           action="#{usuariosBean.doLogin(event)}" update=":mensajes"
-             oncomplete="manejarLogin(xhr, status, args)" />
-        </f:facet>
-      </h:panelGrid>
-    </p:panel>
-  </h:form>
-</h:body>
-<script type="text/javascript">
-  //<![CDATA[
-  function manejarLogin(xhr, status, args) {
-    if (!args.validationFailed && args.estaLogeado) {
-      setTimeout(function() {
-        window.location = args.view;
-      }, 500);
-    }
-  }
-//]]>
-</script>
+        <ui:composition template="newTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="mensajes" showDetail="true" life="2000" />
+                <h:form class="login">
+                    <p:panel header="Login" >
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel for="username" value="Usuario:" />
+                            <p:inputText value="#{usuariosBean.username}" id="username"
+                                         required="true" label="username" />
+                            <h:outputLabel for="password" value="Clave:" />
+                            <p:password value="#{usuariosBean.password}" id="password" required="true"
+                                        label="password" />
+                            <f:facet name="footer" >
+                                <div class="right">
+                                    <p:commandButton id="loginButton" value="Login" 
+                                                     action="#{usuariosBean.doLogin(event)}" update=":mensajes"
+                                                     oncomplete="manejarLogin(xhr, status, args)" />
+                                </div>
+                            </f:facet>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+    <script type="text/javascript">
+        //<![CDATA[
+        function manejarLogin(xhr, status, args) {
+            if (!args.validationFailed && args.estaLogeado) {
+                setTimeout(function () {
+                    window.location = args.view;
+                }, 500);
+            }
+        }
+        //]]>
+    </script>
 </html>
 

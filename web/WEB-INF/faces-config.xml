@@ -4,16 +4,36 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
  <navigation-rule>
-	<from-view-id>index.xhtml</from-view-id>
+	<from-view-id>/index.xhtml</from-view-id>
 	<navigation-case>
 		<from-action>#{UsuariosBean.doLogin}</from-action>
 		<from-outcome>inicio</from-outcome>
-		<to-view-id>inicio.xhtml</to-view-id>
+		<to-view-id>/inicio.xhtml</to-view-id>
 	</navigation-case>
-        	<navigation-case>
+        <navigation-case>
 		<from-action>#{UsuariosBean.doLogin}</from-action>
 		<from-outcome>failure</from-outcome>
-		<to-view-id>index.xhtml</to-view-id>
+		<to-view-id>/index.xhtml</to-view-id>
+	</navigation-case>
+        
+    </navigation-rule>
+    <navigation-rule>
+        	<from-view-id>/inicio.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>inicio</from-outcome>
+		<to-view-id>/inicio.xhtml</to-view-id>
+	</navigation-case>
+        <navigation-case>
+		<from-outcome>entradas</from-outcome>
+		<to-view-id>/entradas.xhtml</to-view-id>
+	</navigation-case>
+        <navigation-case>
+		<from-outcome>salidas</from-outcome>
+		<to-view-id>/salidas.xhtml</to-view-id>
+	</navigation-case>
+        <navigation-case>
+		<from-outcome>historial</from-outcome>
+		<to-view-id>/historial.xhtml</to-view-id>
 	</navigation-case>
     </navigation-rule>
 </faces-config>

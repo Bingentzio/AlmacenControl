@@ -1,61 +1,71 @@
-
-#top {
-    position: relative;
-    background-color: #036fab;
-    color: white;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
+.header {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.26);
+    min-height: 56px;
+    transition: min-height 0.3s;
+    text-align: center;
 }
 
-#bottom {
-    position: relative;
-    background-color: #c2dfef;
-    padding: 5px;
-    margin: 10px 0px 0px 0px;
+.header__inner {
+    width: 100%;
 }
 
-#left {
-    float: left;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
+.header__logo {
+    height: 72px;
+    margin-right: 1em;
+    vertical-align: top;
+    margin-top: 12px;
 }
 
-#right {
-    float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
+.header__title {
+    font-weight: 300;
+    font-size: 4em;
+    margin: 0.5em 0.25em;
+    display: inline-block;
+    color: #212121;
 }
 
-.center_content {
-    position: relative;
-    background-color: #dddddd;
-    padding: 5px;
+.bottom {
+    width: 100%;
+    position:fixed;
+    text-align: center;
+    height:20px; 
+    color:grey;
+    background: #212121;
+    padding:5px;
+    bottom:0px;
 }
 
-.left_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin-left: 170px;
-}
-
-.right_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin: 0px 170px 0px 170px;
-}
-
-#top a:link, #top a:visited {
-  color: white;
-  font-weight : bold;
-  text-decoration: none;
-}
-
-#top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+.content {
 }
 
 
+.login{
+    margin: 0 auto;
+    margin-top: 12%;
+    width: 280px;
+}
+
+.right{
+    text-align: right;
+}
+
+@media screen and (min-width: 1140px) {
+    main, .header__inner, .content {
+        width: 1140px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+@media screen and (max-width: 549px) {
+    .header__logo {
+        height: 48px;
+        margin-right: 0.5em;
+    }
+    .header__title {
+        margin-left: 0;
+        font-size: 2em;
+        vertical-align: bottom; 
+    }
+}
