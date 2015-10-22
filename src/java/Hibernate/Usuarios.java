@@ -1,5 +1,5 @@
 package Hibernate;
-// Generated 20-oct-2015 11:47:51 by Hibernate Tools 4.3.1
+// Generated 22-oct-2015 15:51:09 by Hibernate Tools 4.3.1
 
 
 
@@ -12,13 +12,17 @@ public class Usuarios  implements java.io.Serializable {
      private Integer id;
      private String user;
      private String password;
+     private String email;
+     private boolean admin;
 
     public Usuarios() {
     }
 
-    public Usuarios(String user, String password) {
+    public Usuarios(String user, String password, String email, boolean admin) {
        this.user = user;
        this.password = password;
+       this.email = email;
+       this.admin = admin;
     }
    
     public Integer getId() {
@@ -41,6 +45,20 @@ public class Usuarios  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public boolean isAdmin() {
+        return this.admin;
+    }
+    
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
 

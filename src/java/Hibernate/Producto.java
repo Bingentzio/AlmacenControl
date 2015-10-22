@@ -1,5 +1,5 @@
 package Hibernate;
-// Generated 20-oct-2015 11:47:51 by Hibernate Tools 4.3.1
+// Generated 22-oct-2015 15:51:09 by Hibernate Tools 4.3.1
 
 
 
@@ -11,18 +11,26 @@ public class Producto  implements java.io.Serializable {
 
      private Integer id;
      private String referencia;
-     private float longitud;
-     private int peso;
-     private int stock;
+     private String refCliente;
+     private int proveedorId;
+     private String descripcion;
+     private int longitud;
+     private String acabado;
+     private int unidades;
+     private String imagen;
 
     public Producto() {
     }
 
-    public Producto(String referencia, float longitud, int peso, int stock) {
+    public Producto(String referencia, String refCliente, int proveedorId, String descripcion, int longitud, String acabado, int unidades, String imagen) {
        this.referencia = referencia;
+       this.refCliente = refCliente;
+       this.proveedorId = proveedorId;
+       this.descripcion = descripcion;
        this.longitud = longitud;
-       this.peso = peso;
-       this.stock = stock;
+       this.acabado = acabado;
+       this.unidades = unidades;
+       this.imagen = imagen;
     }
    
     public Integer getId() {
@@ -39,26 +47,54 @@ public class Producto  implements java.io.Serializable {
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
-    public float getLongitud() {
+    public String getRefCliente() {
+        return this.refCliente;
+    }
+    
+    public void setRefCliente(String refCliente) {
+        this.refCliente = refCliente;
+    }
+    public int getProveedorId() {
+        return this.proveedorId;
+    }
+    
+    public void setProveedorId(int proveedorId) {
+        this.proveedorId = proveedorId;
+    }
+    public String getDescripcion() {
+        return this.descripcion;
+    }
+    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    public int getLongitud() {
         return this.longitud;
     }
     
-    public void setLongitud(float longitud) {
+    public void setLongitud(int longitud) {
         this.longitud = longitud;
     }
-    public int getPeso() {
-        return this.peso;
+    public String getAcabado() {
+        return this.acabado;
     }
     
-    public void setPeso(int peso) {
-        this.peso = peso;
+    public void setAcabado(String acabado) {
+        this.acabado = acabado;
     }
-    public int getStock() {
-        return this.stock;
+    public int getUnidades() {
+        return this.unidades;
     }
     
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setUnidades(int unidades) {
+        this.unidades = unidades;
+    }
+    public String getImagen() {
+        return this.imagen;
+    }
+    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 

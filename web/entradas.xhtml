@@ -12,19 +12,21 @@
     <h:body>
         <ui:composition template="newTemplate.xhtml">
             <ui:define name="content">
-                <h:form>
+                <p:growl id="mensajes" showDetail="true" life="2000" />
+                <h:form>                
                     <h:panelGrid  columns="2" cellpadding="5"  class="right_button">  
-                        <p:commandButton   icon="ui-icon-person"/>
+                        <p:commandButton action="#{usuariosBean.adminDa}" icon="ui-icon-gear" update=":mensajes"/>
                         <p:commandButton actionListener="#{usuariosBean.logout}" action="index" icon="ui-icon-power"/>
                     </h:panelGrid>
                     <h:panelGrid columns="1" cellpadding="0" width="100%">
-                        <p:tabMenu activeIndex="#{productoBean.myActiveIndex}">
-                            <p:menuitem value="Almacén" action="#{productoBean.menu(1)}" icon="ui-icon-home"/>
-                            <p:menuitem value="Entradas" action="#{productoBean.menu(2)}" icon="ui-icon-circle-arrow-s"/>
-                            <p:menuitem value="Salidas" action="#{productoBean.menu(3)}" icon="ui-icon-circle-arrow-n"/>
-                            <p:menuitem value="Historial" action="#{productoBean.menu(4)}" icon="ui-icon-search" />
+                        <p:tabMenu activeIndex="#{menuak.myActiveIndex}">
+                            <p:menuitem value="Inventario" action="#{menuak.menu(1)}" icon="ui-icon-home"/>
+                            <p:menuitem value="Entradas" action="#{menuak.menu(2)}" icon="ui-icon-circle-arrow-s"/>
+                            <p:menuitem value="Salidas" action="#{menuak.menu(3)}" icon="ui-icon-circle-arrow-n"/>
+                            <p:menuitem value="Historial" action="#{menuak.menu(4)}" icon="ui-icon-search" />
                         </p:tabMenu>
                     </h:panelGrid>
+
                 </h:form>
             </ui:define>
         </ui:composition>

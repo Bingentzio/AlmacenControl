@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20-oct-2015 11:47:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 22-oct-2015 15:51:10 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="Hibernate.Usuarios" table="usuarios" catalog="almacen_demo" optimistic-lock="version">
+    <class name="Hibernate.Usuarios" table="usuarios" catalog="control_de_Stock" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
@@ -13,6 +13,12 @@
         </property>
         <property name="password" type="string">
             <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="20" not-null="true" />
+        </property>
+        <property name="admin" type="boolean">
+            <column name="admin" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
