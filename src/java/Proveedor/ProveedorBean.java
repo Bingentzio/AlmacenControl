@@ -27,6 +27,7 @@ public class ProveedorBean {
     private List<Proveedor> proveedoreZerrenda;
 
     public List<Proveedor> getProveedoreZerrenda() {
+        proveedoreZerrendaLortu();
         return proveedoreZerrenda;
     }
 

@@ -26,7 +26,40 @@
                             <p:menuitem value="Historial" action="#{menuak.menu(4)}" icon="ui-icon-search" />
                         </p:tabMenu>
                     </h:panelGrid>
+                    <p:tabView value="#{proveedorBean.proveedoreZerrenda}" var="proveedor" class="panelNagusia">
+                        <p:tab title="#{proveedor.nombre}">
+                            <h:panelGrid class="hiruBotoiak" columns="3" cellpadding="5" >
+                                <p:commandButton value="Nuevo" icon="ui-icon-plusthick"/>
+                                <p:commandButton value="Editar" process="productsDT" icon="ui-icon-pencil"/>
+                                <p:commandButton value="Eliminar" icon="ui-icon-trash"/>
+                            </h:panelGrid>
+                            <p:dataTable id="productsDT" var="products" value="#{productoBean.productuZerrendaHornitzailea(proveedor.id)}" selectionMode="single" selection="#{productoBean.selectedproduct}" rowKey="#{products.id}">
+                                <f:facet name="header">
+                                    Productos
+                                </f:facet>
+                                <p:column headerText="Referencia Irizar" width="10%">
+                                    <h:outputText value="#{products.refIrizar}" />
+                                </p:column>
+                                <p:column headerText="Referencia" width="10%">
+                                    <h:outputText value="#{products.referencia}" />
+                                </p:column>
+                                <p:column headerText="Descripcion">
+                                    <h:outputText value="#{products.descripcion}" />
+                                </p:column>
+                                <p:column headerText="Longitud" width="10%">
+                                    <h:outputText value="#{products.longitud}" />
+                                </p:column>
+                                <p:column headerText="Acabado" width="15%">
+                                    <h:outputText value="#{products.acabado}" />
+                                </p:column>
+                                <p:column headerText="Unidades" width="8%" >
+                                    <h:outputText value="#{products.unidades}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
 
+                    </p:tabView>
+                   
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -56,6 +56,9 @@
 .hiruBotoiak{
     font-size: 11px;
 }
+.panelNagusia{
+    margin-top: 3%;
+}
 
 
 @media screen and (min-width: 1140px) {
