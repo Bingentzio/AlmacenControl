@@ -12,35 +12,14 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import stuff.bikotea;
+
 
 /**
  *
  * @author bingen
  */
 public class UsuariosDao {
-    
-    public static bikotea Login(String username) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        List<Usuarios> emaitza = new ArrayList<Usuarios>();
-        try {
-            session.beginTransaction();
-            Query q = session.createQuery("from Usuarios as u where u.user = '" + username + "' ");
-            emaitza = q.list();
-            session.getTransaction().commit();
-            if (emaitza.isEmpty()) {
-                return new bikotea(null,false);
-            }
-        } catch (Exception e) {
-            System.err.print(e);
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(login)");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            session.getTransaction().rollback();
-        }
-        return new bikotea(emaitza.get(0).getPassword(), emaitza.get(0).isAdmin());
-    }
     
     public static List<Usuarios> userList() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -50,9 +29,6 @@ public class UsuariosDao {
             Criteria criteria = session.createCriteria(Usuarios.class);
             emaitza = criteria.list();
             session.getTransaction().commit();
-            if (emaitza.isEmpty()) {
-                return null;
-            }
         } catch (Exception e) {
             System.err.print(e);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(userList)");

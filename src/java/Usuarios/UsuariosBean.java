@@ -6,14 +6,11 @@
 package Usuarios;
 
 import Hibernate.Usuarios;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
-import stuff.bikotea;
 
 /**
  *
@@ -75,26 +72,19 @@ public class UsuariosBean implements java.io.Serializable {
         this.password = password;
     }
 
-    //loginean sartutako datuak konprobatzeko,zuzenak badira barrura
-    public String doLogin(ActionEvent event) {
-        RequestContext context = RequestContext.getCurrentInstance();
+    //login egiteko
+    public String Login() {
         FacesMessage message;
-        boolean loggedIn;
-        bikotea bik = UsuariosDao.Login(username);
-        String pasahitza = bik.getPasahitza();
-        if (pasahitza != null && pasahitza.equals(password)) {
-            loggedIn = true;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hola", username);
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            context.addCallbackParam("loggedIn", loggedIn);
-            admin = bik.isAdmin();
-            erabiltzaileZerrendaLortu();
-            return "inicio";
+        for (Usuarios u : erabiltzaileZerrenda) {
+            if (username != null && password != null && u.getUser().equals(username) && u.getPassword().equals(password)) {
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hola", username);
+                FacesContext.getCurrentInstance().addMessage(null, message);
+                admin = u.isAdmin();
+                return "inicio";
+            }
         }
-        loggedIn = false;
         message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Credenciales erroneas");
         FacesContext.getCurrentInstance().addMessage(null, message);
-        context.addCallbackParam("loggedIn", loggedIn);
         return "index";
     }
 
@@ -116,6 +106,7 @@ public class UsuariosBean implements java.io.Serializable {
     //Erabiltzaile zerrenda lortu
     public void erabiltzaileZerrendaLortu() {
         erabiltzaileZerrenda = UsuariosDao.userList();
+        System.out.println(1);
     }
 
     //erabiltzailearen datuak aldatzeko
