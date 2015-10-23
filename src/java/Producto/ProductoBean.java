@@ -5,6 +5,8 @@
  */
 package Producto;
 
+import Hibernate.Producto;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -23,4 +25,19 @@ public class ProductoBean {
     public ProductoBean() {
     }
     
+    private List<Producto> productoZerrenda;
+
+    public List<Producto> getProductoZerrenda() {
+        return productoZerrenda;
+    }
+
+    public void setProductoZerrenda(List<Producto> productoZerrenda) {
+        this.productoZerrenda = productoZerrenda;
+    }
+    
+        //producto zerrenda lortu
+    public void erabiltzaileZerrendaLortu() {
+        productoZerrenda = ProductoDao.productoList();
+        System.out.println("Producto Zerrenda");
+    }
 }

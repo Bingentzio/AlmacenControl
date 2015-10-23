@@ -5,6 +5,8 @@
  */
 package Proveedor;
 
+import Hibernate.Proveedor;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -21,5 +23,20 @@ public class ProveedorBean {
      */
     public ProveedorBean() {
     }
-    
+
+    private List<Proveedor> proveedoreZerrenda;
+
+    public List<Proveedor> getProveedoreZerrenda() {
+        return proveedoreZerrenda;
+    }
+
+    public void setProveedoreZerrenda(List<Proveedor> proveedoreZerrenda) {
+        this.proveedoreZerrenda = proveedoreZerrenda;
+    }
+
+    //Proveedoreen zerrenda lortu
+    public void proveedoreZerrendaLortu() {
+        proveedoreZerrenda = ProveedorDao.proveedorList();
+        System.out.println("Proveedore Zerrenda");
+    }
 }

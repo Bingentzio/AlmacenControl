@@ -105,7 +105,7 @@ public class UsuariosBean implements java.io.Serializable {
     //Erabiltzaile zerrenda lortu
     public void erabiltzaileZerrendaLortu() {
         erabiltzaileZerrenda = UsuariosDao.userList();
-        System.out.println(1);
+        System.out.println("Erabiltzaile Zerrenda");
     }
 
     //erabiltzailearen datuak aldatzeko
