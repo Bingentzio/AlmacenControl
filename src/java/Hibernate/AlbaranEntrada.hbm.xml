@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 10:34:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hibernate.AlbaranEntrada" table="Albaran_entrada" catalog="control_de_stock" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="numeroAlbaran" type="string">
+            <column name="numero_albaran" length="15" not-null="true" />
+        </property>
+        <property name="numeroPedido" type="string">
+            <column name="numero_pedido" length="15" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="proveedorId" type="int">
+            <column name="proveedor_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 10:34:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hibernate.Caja" table="Caja" catalog="control_de_stock" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="numero" type="int">
+            <column name="numero" not-null="true" />
+        </property>
+        <property name="productoId" type="int">
+            <column name="producto_id" not-null="true" />
+        </property>
+        <property name="albaranEntradaId" type="int">
+            <column name="albaran_entrada_id" not-null="true" />
+        </property>
+        <property name="albaranSalidaId" type="int">
+            <column name="albaran_salida_id" not-null="true" />
+        </property>
+        <property name="peso" type="int">
+            <column name="peso" not-null="true" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="100" not-null="true" />
+        </property>
+        <property name="estado" type="boolean">
+            <column name="estado" not-null="true">
+                <comment>1-en el almacen || 0-ha salido</comment>
+            </column>
+        </property>
+        <property name="activo" type="boolean">
+            <column name="activo" not-null="true">
+                <comment>1-activo || 0-desactivado (fin de mes)</comment>
+            </column>
+        </property>
+        <property name="unidades" type="int">
+            <column name="unidades" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -19,7 +19,7 @@
 .header__title {
     font-weight: 300;
     font-size: 4em;
-    margin: 0.5em 0.25em;
+    margin: 0.35em 0.20em;
     display: inline-block;
     color: #212121;
 }
@@ -41,7 +41,7 @@
 
 .login{
     margin: 0 auto;
-    margin-top: 12%;
+    margin-top: 18%;
     width: 280px;
 }
 
@@ -49,8 +49,14 @@
     text-align: right;
 }
 .right_button{
+    margin-top: 0.5%;
     margin-left: 90%;
 }
+
+.hiruBotoiak{
+    font-size: 11px;
+}
+
 
 @media screen and (min-width: 1140px) {
     main, .header__inner, .content {
@@ -61,36 +67,38 @@
 
 }
 @media screen and (max-width: 850px) {
-       .header__logo {
-        height: 60px;
+    .header__logo {
+        height: 58px;
         margin-right: 0.5em;
     }
     .header__title {
         margin-left: 0;
-        font-size: 4em;
+        font-size: 3em;
         vertical-align: bottom; 
     }
     .bottom{
         font-size: 9px;
         height: 15px;
-        padding: 4px;
-
+        padding: 3px;
     }
     body{
-      font-size: 10px;
+        font-size: 10px;
     }
     .login{
         width: 240px;
     }
     .right_button{
-    margin-left: 80%;
-}
+        margin-left: 80%;
+    }
+    .hiruBotoiak{
+        font-size: 9px;
+    }
 
 }
 
 @media screen and (max-width: 500px) {
     .header__logo {
-        height: 48px;
+        height: 40px;
         margin-right: 0.5em;
     }
     .header__title {
@@ -105,13 +113,16 @@
 
     }
     body{
-      font-size: 8px;
+        font-size: 8px;
     }
     .login{
         width: 200px;
     }
     .right_button{
-    margin-left: 70%;
-}
+        margin-left: 70%;
+    }
+    .hiruBotoiak{
+        font-size: 7px;
+    }
 
 }

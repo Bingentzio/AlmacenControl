@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20-oct-2015 11:47:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 23-oct-2015 10:34:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="Hibernate.Producto" table="producto" catalog="talvarez_demo" optimistic-lock="version">
+    <class name="Hibernate.Producto" table="Producto" catalog="control_de_stock" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
@@ -11,14 +11,30 @@
         <property name="referencia" type="string">
             <column name="referencia" length="10" not-null="true" />
         </property>
-        <property name="longitud" type="float">
-            <column name="longitud" precision="12" scale="0" not-null="true" />
+        <property name="refIrizar" type="string">
+            <column name="ref_irizar" length="10" not-null="true" />
         </property>
-        <property name="peso" type="int">
-            <column name="peso" not-null="true" />
+        <property name="proveedorId" type="int">
+            <column name="proveedor_id" not-null="true" />
         </property>
-        <property name="stock" type="int">
-            <column name="stock" not-null="true" />
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" not-null="true" />
+        </property>
+        <property name="longitud" type="int">
+            <column name="longitud" not-null="true">
+                <comment>(mm)</comment>
+            </column>
+        </property>
+        <property name="acabado" type="string">
+            <column name="acabado" length="20" not-null="true" />
+        </property>
+        <property name="unidades" type="int">
+            <column name="unidades" not-null="true" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="imagen" length="30" not-null="true">
+                <comment>(url de la imagen)</comment>
+            </column>
         </property>
     </class>
 </hibernate-mapping>

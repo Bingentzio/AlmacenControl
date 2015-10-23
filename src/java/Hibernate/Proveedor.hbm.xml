@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-oct-2015 10:34:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hibernate.Proveedor" table="Proveedor" catalog="control_de_stock" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="refProveedor" type="string">
+            <column name="ref_proveedor" length="15" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="30" not-null="true" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="30" not-null="true" />
+        </property>
+        <property name="codigoPostal" type="int">
+            <column name="codigo_postal" not-null="true" />
+        </property>
+        <property name="pais" type="string">
+            <column name="pais" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

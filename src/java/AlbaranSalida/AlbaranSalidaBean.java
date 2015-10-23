@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Historial;
+package AlbaranSalida;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author bingen
+ * @author Bingen
  */
 @ManagedBean
 @SessionScoped
-public class HistorialBean implements java.io.Serializable{
+public class AlbaranSalidaBean {
 
     /**
-     * Creates a new instance of HistorialBean
+     * Creates a new instance of AlbaranSalidaBean
      */
-    public HistorialBean() {
+    public AlbaranSalidaBean() {
     }
     
 }

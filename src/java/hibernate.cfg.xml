@@ -4,14 +4,19 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://192.168.10.52:3306/talvarez_demo?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://192.168.10.52:3306/control_de_stock?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">innovatek</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="Hibernate/Producto.hbm.xml"/>
-    <mapping resource="Hibernate/Historial.hbm.xml"/>
+    <mapping resource="Hibernate/AlbaranEntrada.hbm.xml"/>
+    <mapping resource="Hibernate/AlbaranSalida.hbm.xml"/>
     <mapping resource="Hibernate/Usuarios.hbm.xml"/>
+    <mapping resource="Hibernate/Destinos.hbm.xml"/>
+    <mapping resource="Hibernate/DestinosProductos.hbm.xml"/>
+    <mapping resource="Hibernate/Caja.hbm.xml"/>
+    <mapping resource="Hibernate/Proveedor.hbm.xml"/>
+    <mapping resource="Hibernate/Producto.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

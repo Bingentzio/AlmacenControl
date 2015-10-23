@@ -11,41 +11,45 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+
 
 /**
  *
  * @author bingen
  */
-
-
 public class UsuariosDao {
-
     
-    public static String Login(String username){
-        
+    public static List<Usuarios> userList() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<Usuarios> emaitza = new ArrayList<Usuarios>();
         try {
             session.beginTransaction();
-            Query q = session.createQuery("from Usuarios as u where u.user = '" + username + "' ");
-            emaitza = q.list();
+            Criteria criteria = session.createCriteria(Usuarios.class);
+            emaitza = criteria.list();
             session.getTransaction().commit();
-            if (emaitza.isEmpty()) {
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario no existe!", "Try again :" + username);
-                FacesContext.getCurrentInstance().addMessage(null, msg);
-                return null;
-            }
         } catch (Exception e) {
-                   System.err.print(e);
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(login)");
+            System.err.print(e);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(userList)");
             FacesContext.getCurrentInstance().addMessage(null, msg);
-            session.getTransaction().rollback(); 
+            session.getTransaction().rollback();
         }
-    
-        return emaitza.get(0).getPassword();
+        return emaitza;
+    }
+
+    public static void userEdit(Usuarios selectedUser) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();       
+        try {
+            session.beginTransaction();
+            session.update(selectedUser);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.err.print(e);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(userEdit)");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            session.getTransaction().rollback();
+        }
     }
     
-        
 }

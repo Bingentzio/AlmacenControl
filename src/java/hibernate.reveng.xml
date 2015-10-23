@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="talvarez_demo"/>
-  <table-filter match-name="usuarios"/>
-  <table-filter match-name="producto"/>
-  <table-filter match-name="historial"/>
+  <schema-selection match-catalog="control_de_stock"/>
+  <table-filter match-name="Destinos"/>
+  <table-filter match-name="destinos_productos"/>
+  <table-filter match-name="Caja"/>
+  <table-filter match-name="Proveedor"/>
+  <table-filter match-name="Usuarios"/>
+  <table-filter match-name="Albaran_salida"/>
+  <table-filter match-name="Albaran_entrada"/>
+  <table-filter match-name="Producto"/>
 </hibernate-reverse-engineering>

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package DestinosProductos;
 
 /**
  *
  * @author Bingen
  */
-public class ProductoDao {
+public class DestinosProductosDao {
     
 }

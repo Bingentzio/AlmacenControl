@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Producto;
+package Destinos;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 
 /**
  *
@@ -15,12 +14,12 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ProductoBean {
+public class DestinosBean {
 
     /**
-     * Creates a new instance of ProductoBean
+     * Creates a new instance of DestinosBean
      */
-    public ProductoBean() {
+    public DestinosBean() {
     }
     
 }
