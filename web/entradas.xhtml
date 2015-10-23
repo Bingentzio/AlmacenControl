@@ -14,7 +14,8 @@
             <ui:define name="content">
                 <p:growl id="mensajes" showDetail="true" life="2000" />
                 <h:form>                
-                    <h:panelGrid  columns="2" cellpadding="5"  class="right_button">  
+                    <h:panelGrid  columns="3" cellpadding="5"  class="right_button">  
+                        <h3 style="color: blue">#{usuariosBean.logedUser.username}</h3>
                         <p:commandButton action="#{usuariosBean.adminDa}" icon="ui-icon-gear" update=":mensajes"/>
                         <p:commandButton actionListener="#{usuariosBean.logout}" action="index" icon="ui-icon-power"/>
                     </h:panelGrid>
