@@ -29,11 +29,14 @@
                         <f:facet name="header">
                             Usuarios
                         </f:facet>
-                        <p:column headerText="Nombre">
-                            <h:outputText value="#{users.user}" />
+                        <p:column headerText="Username">
+                            <h:outputText value="#{users.username}" />
                         </p:column>
-                        <p:column headerText="Clave">
-                            <h:outputText value="**********"  />
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{users.username}" />
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <h:outputText value="#{users.username}" />
                         </p:column>
                         <p:column headerText="Email">
                             <h:outputText value="#{users.email}" />
@@ -41,21 +44,33 @@
                     </p:dataTable>
                     <p:dialog header="Usuario" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                         <p:outputPanel id="userDetail" style="text-align:center;">
-                            <p:panelGrid  columns="2" rendered="#{not empty usuariosBean.selectedUser}" columnClasses="label,value">
-                                <h:outputLabel for="izena" value="Nombre:" />
-                                <p:inplace id="izena">
-                                    <p:inputText value="#{usuariosBean.selectedUser.user}" />
+                            <p:panelGrid  style="width: 300px" columns="2" rendered="#{not empty usuariosBean.selectedUser}" columnClasses="label,value">
+                                <h:outputLabel for="username" value="Username:" />
+                                <p:inplace id="username">
+                                    <p:inputText value="#{usuariosBean.selectedUser.username}" />
                                 </p:inplace>
-                                <h:outputLabel for="pasahitza" value="Clave" />
-                                <p:inplace id="pasahitza">
-                                    <p:inputText value="#{usuariosBean.selectedUser.password}" />
-                                </p:inplace>                                   
+                                <h:outputLabel for="nombre" value="Nombre:" />
+                                <p:inplace id="nombre">
+                                    <p:inputText value="#{usuariosBean.selectedUser.nombre}" />
+                                </p:inplace>
+                                <h:outputLabel for="apellido" value="Apellido:" />
+                                <p:inplace id="apellido">
+                                    <p:inputText value="#{usuariosBean.selectedUser.apellido}" />
+                                </p:inplace>                                          
                                 <h:outputLabel for="email" value="Email:" />
                                 <p:inplace id="email">
                                     <p:inputText value="#{usuariosBean.selectedUser.email}" />
-                                </p:inplace>  
-                                <h:outputLabel value="Administrador" />
+                                </p:inplace> 
+                                <h:outputLabel value=""/>
+                                <h:outputLabel value=""/>
+                                <h:outputLabel for="pasahitza" value="Password:" style="color: indianred;"/> 
+                                <p:inplace id="pasahitza" label="******">
+                                    <p:inputText value="#{usuariosBean.selectedUser.password}" />
+                                </p:inplace> 
+                                <h:outputLabel value="Administrador" style="color: indianred;"/>
                                 <p:selectBooleanCheckbox value="#{usuariosBean.selectedUser.admin}" />
+                                <h:outputLabel value=""/>
+                                <h:outputLabel value=""/>
                             </p:panelGrid>
                             <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
                                 <p:commandButton value="Editar" actionListener="#{usuariosBean.erabiltzaileaEditatu}" oncomplete="PF('userDialog').hide()" update="usersDT" />

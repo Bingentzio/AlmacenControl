@@ -1,5 +1,5 @@
 package Hibernate;
-// Generated 22-oct-2015 15:51:09 by Hibernate Tools 4.3.1
+// Generated 23-oct-2015 10:33:54 by Hibernate Tools 4.3.1
 
 
 
@@ -10,7 +10,9 @@ public class Usuarios  implements java.io.Serializable {
 
 
      private Integer id;
-     private String user;
+     private String username;
+     private String nombre;
+     private String apellido;
      private String password;
      private String email;
      private boolean admin;
@@ -18,8 +20,10 @@ public class Usuarios  implements java.io.Serializable {
     public Usuarios() {
     }
 
-    public Usuarios(String user, String password, String email, boolean admin) {
-       this.user = user;
+    public Usuarios(String username, String nombre, String apellido, String password, String email, boolean admin) {
+       this.username = username;
+       this.nombre = nombre;
+       this.apellido = apellido;
        this.password = password;
        this.email = email;
        this.admin = admin;
@@ -32,12 +36,26 @@ public class Usuarios  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getUser() {
-        return this.user;
+    public String getUsername() {
+        return this.username;
     }
     
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getNombre() {
+        return this.nombre;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellido() {
+        return this.apellido;
+    }
+    
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
     public String getPassword() {
         return this.password;

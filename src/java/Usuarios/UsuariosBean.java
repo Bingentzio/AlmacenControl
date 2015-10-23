@@ -25,12 +25,19 @@ public class UsuariosBean implements java.io.Serializable {
      */
     public UsuariosBean() {
     }
-
-    private boolean admin = false; //saioa hasi duena administratzailea den jakiteko
     private String username; //loginean sartu duen erabiltzaile izena
     private String password; //loginean sartu duen pasahitza
     private List<Usuarios> erabiltzaileZerrenda; //erabiltzaile guztiak gordetzeko
-    private Usuarios selectedUser;
+    private Usuarios selectedUser; //editatzeko hautatzen den erabiltzailea
+    private Usuarios logedUser; //saioa hasi duen erabiltzailea
+
+    public Usuarios getLogedUser() {
+        return logedUser;
+    }
+
+    public void setLogedUser(Usuarios logedUser) {
+        this.logedUser = logedUser;
+    }
 
     public Usuarios getSelectedUser() {
         return selectedUser;
@@ -46,14 +53,6 @@ public class UsuariosBean implements java.io.Serializable {
 
     public void setErabiltzaileZerrenda(List<Usuarios> erabiltzaileZerrenda) {
         this.erabiltzaileZerrenda = erabiltzaileZerrenda;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
     }
 
     public String getUsername() {
@@ -76,10 +75,10 @@ public class UsuariosBean implements java.io.Serializable {
     public String Login() {
         FacesMessage message;
         for (Usuarios u : erabiltzaileZerrenda) {
-            if (username != null && password != null && u.getUser().equals(username) && u.getPassword().equals(password)) {
+            if (username != null && password != null && u.getUsername().equals(username) && u.getPassword().equals(password)) {
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Hola", username);
                 FacesContext.getCurrentInstance().addMessage(null, message);
-                admin = u.isAdmin();
+                logedUser=u;
                 return "inicio";
             }
         }
@@ -95,7 +94,7 @@ public class UsuariosBean implements java.io.Serializable {
 
     //sessioan dagoen erabiltzailea ea administraria den jakiteko
     public String adminDa() {
-        if (isAdmin()) {
+        if (logedUser.isAdmin()) {
             return "users";
         }
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No tienes permiso para acceder");
