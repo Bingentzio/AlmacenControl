@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class DestinosProductosBean {
+public class DestinosProductosBean implements java.io.Serializable {
 
     /**
      * Creates a new instance of DestinosProductosBean

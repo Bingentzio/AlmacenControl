@@ -21,9 +21,9 @@
                 </h:panelGrid>
                 <p:panel class="panelNagusia">
                     <h:panelGrid class="hiruBotoiak" columns="3" cellpadding="5" >
-                        <p:commandButton value="Nuevo" icon="ui-icon-plusthick"/>
+                        <p:commandButton value="Nuevo" process="usersDT" icon="ui-icon-plusthick" update="userDetailNew" oncomplete="PF('userDialogNew').show()"/>
                         <p:commandButton value="Editar" process="usersDT" icon="ui-icon-pencil" update="userDetail" oncomplete="PF('userDialog').show()"/>
-                        <p:commandButton value="Eliminar" icon="ui-icon-trash"/>
+                        <p:commandButton value="Eliminar" process="usersDT" icon="ui-icon-trash" update="userDetailDel" oncomplete="PF('userDialogDel').show()"/>
                     </h:panelGrid>
                     <p:dataTable id="usersDT" var="users" value="#{usuariosBean.erabiltzaileZerrenda}" selectionMode="single" selection="#{usuariosBean.selectedUser}" rowKey="#{users.id}">
                         <f:facet name="header">
@@ -42,7 +42,7 @@
                             <h:outputText value="#{users.email}" />
                         </p:column>
                     </p:dataTable>
-                    <p:dialog header="Usuario" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:dialog header="Editar Usuario" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                         <p:outputPanel id="userDetail" style="text-align:center;">
                             <p:panelGrid  style="width: 300px" columns="2" rendered="#{not empty usuariosBean.selectedUser}" columnClasses="label,value">
                                 <h:outputLabel for="username" value="Username:" />
@@ -74,6 +74,43 @@
                             </p:panelGrid>
                             <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
                                 <p:commandButton value="Editar" actionListener="#{usuariosBean.erabiltzaileaEditatu}" oncomplete="PF('userDialog').hide()" update="usersDT" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog header="Usuario Nuevo" widgetVar="userDialogNew" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="userDetailNew" style="text-align:center;">
+                            <p:panelGrid  style="width: 300px" columns="2"  columnClasses="label,value">
+                                <h:outputLabel  value="Username:" />
+                                <p:inputText label="username" value="#{usuariosBean.newUser.username}" />
+                                <h:outputLabel value="Nombre:" />
+                                <p:inputText label="nombre" value="#{usuariosBean.newUser.nombre}" />
+                                <h:outputLabel  value="Apellido:" />
+                                <p:inputText label="apellido" value="#{usuariosBean.newUser.apellido}" />                                        
+                                <h:outputLabel for="email" value="Email:" />
+                                <p:inputText label="email" value="#{usuariosBean.newUser.email}" />
+                                <h:outputLabel value=""/>
+                                <h:outputLabel value=""/>
+                                <h:outputLabel  value="Password:" style="color: indianred;"/> 
+                                <p:inputText label="password" value="#{usuariosBean.newUser.password}" />
+                                <h:outputLabel value="Administrador" style="color: indianred;"/>
+                                <p:selectBooleanCheckbox label="admin" value="#{usuariosBean.newUser.admin}" />
+                                <h:outputLabel value=""/>
+                                <h:outputLabel value=""/>
+                            </p:panelGrid>
+                            <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
+                                <p:commandButton value="Guardar" actionListener="#{usuariosBean.erabiltzaileBerria}" oncomplete="PF('userDialogNew').hide()" update="usersDT" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog header="Eliminar Usuario" widgetVar="userDialogDel" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="userDetailDel" style="text-align:center;">
+                            <p:panelGrid  style="width: 300px" columns="1"  columnClasses="label,value">
+                                ¿Seguro que deseas eliminar al usuario #{usuariosBean.selectedUser.username}?
+                            </p:panelGrid>
+
+                            <h:panelGrid  columns="2" cellpadding="5" style="margin: 0 auto">
+                                <p:commandButton value="Si" actionListener="#{usuariosBean.erabiltzaileaEzabatu}" oncomplete="PF('userDialogDel').hide()" update="usersDT"/>
+                                <p:commandButton value="No"  oncomplete="PF('userDialogDel').hide()"/>
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:dialog>

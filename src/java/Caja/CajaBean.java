@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class CajaBean {
+public class CajaBean implements java.io.Serializable {
 
     /**
      * Creates a new instance of CajaBean

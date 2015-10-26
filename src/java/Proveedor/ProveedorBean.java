@@ -16,7 +16,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ProveedorBean {
+public class ProveedorBean implements java.io.Serializable {
 
     /**
      * Creates a new instance of ProveedorBean

@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class AlbaranEntradaBean {
+public class AlbaranEntradaBean implements java.io.Serializable {
 
     /**
      * Creates a new instance of AlbaranEntradaBean

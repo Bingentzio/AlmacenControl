@@ -30,6 +30,15 @@ public class UsuariosBean implements java.io.Serializable {
     private List<Usuarios> erabiltzaileZerrenda; //erabiltzaile guztiak gordetzeko
     private Usuarios selectedUser; //editatzeko hautatzen den erabiltzailea
     private Usuarios logedUser; //saioa hasi duen erabiltzailea
+    private Usuarios newUser= new Usuarios();//erabiltzaile berria sortzeko
+
+    public Usuarios getNewUser() {
+        return newUser;
+    }
+
+    public void setNewUser(Usuarios newUser) {
+        this.newUser = newUser;
+    }
 
     public Usuarios getLogedUser() {
         return logedUser;
@@ -48,6 +57,7 @@ public class UsuariosBean implements java.io.Serializable {
     }
 
     public List<Usuarios> getErabiltzaileZerrenda() {
+        erabiltzaileZerrendaLortu();
         return erabiltzaileZerrenda;
     }
 
@@ -114,5 +124,16 @@ public class UsuariosBean implements java.io.Serializable {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editado", "Edición Correcta!");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    
+    public void erabiltzaileBerria(){
+        UsuariosDao.saveUser(newUser);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Has creado un nuevo usuario!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void erabiltzaileaEzabatu(){
+        UsuariosDao.deleteUser(selectedUser);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "El usuario ha sido eliminado!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 }

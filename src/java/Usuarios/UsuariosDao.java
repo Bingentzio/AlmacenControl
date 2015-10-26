@@ -14,13 +14,12 @@ import javax.faces.context.FacesContext;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
-
 /**
  *
  * @author bingen
  */
 public class UsuariosDao {
-    
+
     public static List<Usuarios> userList() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         List<Usuarios> emaitza = new ArrayList<Usuarios>();
@@ -39,17 +38,45 @@ public class UsuariosDao {
     }
 
     public static void userEdit(Usuarios selectedUser) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();       
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
             session.update(selectedUser);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.err.print(e);
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(userEdit)");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(editUser)");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             session.getTransaction().rollback();
         }
     }
-    
+
+    public static void saveUser(Usuarios newUser) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            session.beginTransaction();
+            session.save(newUser);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.err.print(e);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(newUser)");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            session.getTransaction().rollback();
+        }
+    }
+
+    public static void deleteUser(Usuarios selectedUser) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            session.beginTransaction();
+            session.delete(selectedUser);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.err.print(e);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(delUser)");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            session.getTransaction().rollback();
+        }
+    }
+
 }
