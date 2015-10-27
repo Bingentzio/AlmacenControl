@@ -18,11 +18,12 @@ public class Producto  implements java.io.Serializable {
      private String acabado;
      private int unidades;
      private String imagen;
+     private boolean activo;
 
     public Producto() {
     }
 
-    public Producto(String referencia, String refIrizar, int proveedorId, String descripcion, int longitud, String acabado, int unidades, String imagen) {
+    public Producto(String referencia, String refIrizar, int proveedorId, String descripcion, int longitud, String acabado, int unidades, String imagen, boolean activo) {
        this.referencia = referencia;
        this.refIrizar = refIrizar;
        this.proveedorId = proveedorId;
@@ -31,6 +32,7 @@ public class Producto  implements java.io.Serializable {
        this.acabado = acabado;
        this.unidades = unidades;
        this.imagen = imagen;
+       this.activo = activo;
     }
    
     public Integer getId() {
@@ -95,6 +97,14 @@ public class Producto  implements java.io.Serializable {
     
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
 

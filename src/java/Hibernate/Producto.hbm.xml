@@ -36,5 +36,10 @@
                 <comment>(url de la imagen)</comment>
             </column>
         </property>
+        <property name="activo" type="boolean">
+            <column name="activo" not-null="true">
+                <comment>1-activo || 0-desactivado</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

@@ -8,8 +8,10 @@ package Producto;
 import Hibernate.Producto;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 
 /**
@@ -26,16 +28,24 @@ public class ProductoBean implements java.io.Serializable {
     public ProductoBean() {
     }
     
-    private List<Producto> productoZerrenda;
-    
-    private Producto selectedproduct; //editatzeko haukeratutako produktua
+    private List<Producto> productoZerrenda;  
+    private Producto selectedProduct; //editatzeko haukeratutako produktua
+    private Producto newProduct= new Producto();//Productu berria sortzeko
 
-    public Producto getSelectedproduct() {
-        return selectedproduct;
+    public Producto getSelectedProduct() {
+        return selectedProduct;
     }
 
-    public void setSelectedproduct(Producto selectedproduct) {
-        this.selectedproduct = selectedproduct;
+    public void setSelectedProduct(Producto selectedProduct) {
+        this.selectedProduct = selectedProduct;
+    }
+
+    public Producto getNewProduct() {
+        return newProduct;
+    }
+
+    public void setNewProduct(Producto newProduct) {
+        this.newProduct = newProduct;
     }
     
     public List<Producto> getProductoZerrenda() {
@@ -61,5 +71,25 @@ public class ProductoBean implements java.io.Serializable {
             }
         }
         return emaitza;
+    }
+    
+    
+    //Productuaren datuak aldatzeko
+    public void productuaEditatu() {
+        ProductoDao.productEdit(selectedProduct);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editado", "El producto ha sido editado!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    //Productu berria sortzeko
+    public void productuBerria(){
+        ProductoDao.saveProduct(newProduct);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Has creado un nuevo producto!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    // aukeratutako productua ezabatzeko
+    public void productuaEzabatu(){
+        ProductoDao.deleteProduct(selectedProduct);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "El producto ha sido eliminado!");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

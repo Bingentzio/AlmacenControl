@@ -104,10 +104,9 @@
                     </p:dialog>
                     <p:dialog header="Eliminar Usuario" widgetVar="userDialogDel" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                         <p:outputPanel id="userDetailDel" style="text-align:center;">
-                            <p:panelGrid  style="width: 300px" columns="1"  columnClasses="label,value">
-                                ¿Seguro que deseas eliminar al usuario #{usuariosBean.selectedUser.username}?
+                            <p:panelGrid  style="width: 300px" columns="1" >
+                                ¿Seguro que deseas eliminar al usuario <b>#{usuariosBean.selectedUser.username}</b>?
                             </p:panelGrid>
-
                             <h:panelGrid  columns="2" cellpadding="5" style="margin: 0 auto">
                                 <p:commandButton value="Si" actionListener="#{usuariosBean.erabiltzaileaEzabatu}" oncomplete="PF('userDialogDel').hide()" update="usersDT"/>
                                 <p:commandButton value="No"  oncomplete="PF('userDialogDel').hide()"/>
