@@ -8,14 +8,14 @@ package Proveedor;
 import Hibernate.Proveedor;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Bingen
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ProveedorBean implements java.io.Serializable {
 
     /**

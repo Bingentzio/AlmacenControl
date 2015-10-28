@@ -6,101 +6,102 @@
     xmlns:f="http://java.sun.com/jsf/core"  
     xmlns:p="http://primefaces.org/ui"      
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"> 
-    <h:head>
-        <title>Control de Stock</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="newTemplate.xhtml">
-            <ui:define name="content">
-                <p:growl id="mensajes" showDetail="true" life="2000" />
-                <h:form>                
-                    <h:panelGrid  columns="2" cellpadding="5"  class="right_button">  
-                        <p:commandButton action="#{usuariosBean.adminDa}" icon="ui-icon-gear" update=":mensajes"/>
-                        <p:commandButton actionListener="#{usuariosBean.logout}" action="index" icon="ui-icon-power"/>
-                    </h:panelGrid>
-                    <h:panelGrid columns="1" cellpadding="0" width="100%">
-                        <p:tabMenu activeIndex="#{menuak.myActiveIndex}">
-                            <p:menuitem value="Inventario" action="#{menuak.menu(1)}" icon="ui-icon-home"/>
-                            <p:menuitem value="Entradas" action="#{menuak.menu(2)}" icon="ui-icon-circle-arrow-s"/>
-                            <p:menuitem value="Salidas" action="#{menuak.menu(3)}" icon="ui-icon-circle-arrow-n"/>
-                            <p:menuitem value="Historial" action="#{menuak.menu(4)}" icon="ui-icon-search" />
-                        </p:tabMenu>
-                    </h:panelGrid>
-                    <p:tabView id="tabview" value="#{proveedorBean.proveedoreZerrenda}" var="proveedor" class="panelNagusia">
-                        <p:tab title="#{proveedor.nombre}">
+    <ui:composition template="newTemplate.xhtml">
+        <ui:define name="content">
+            <p:growl id="mensajes" showDetail="true" life="2000" />
+            <h:form onclick="#{proveedorBean.proveedoreZerrendaLortu()}#{productoBean.productoZerrendaLortu()}">                
+                <h:panelGrid  columns="2" cellpadding="5"  class="right_button">  
+                    <p:commandButton action="#{usuariosBean.adminDa}" icon="ui-icon-gear" update=":mensajes"/>
+                    <p:commandButton actionListener="#{usuariosBean.logout}" action="index" icon="ui-icon-power"/>
+                </h:panelGrid>
+                <h:panelGrid columns="1" cellpadding="0" width="100%">
+                    <p:tabMenu activeIndex="#{menuak.myActiveIndex}">
+                        <p:menuitem value="Inventario" action="#{menuak.menu(1)}" icon="ui-icon-home"/>
+                        <p:menuitem value="Entradas" action="#{menuak.menu(2)}" icon="ui-icon-circle-arrow-s"/>
+                        <p:menuitem value="Salidas" action="#{menuak.menu(3)}" icon="ui-icon-circle-arrow-n"/>
+                        <p:menuitem value="Historial" action="#{menuak.menu(4)}" icon="ui-icon-search" />
+                    </p:tabMenu>
+                </h:panelGrid>
 
-                            <h:panelGrid class="hiruBotoiak" columns="3" cellpadding="5" >
-                                <p:commandButton value="Nuevo" icon="ui-icon-plusthick" />
-                                <p:commandButton value="Editar" process="productsDT" icon="ui-icon-pencil" update="@form:productDetail" oncomplete="PF('productEdit').show()"/>
-                                <p:commandButton value="Eliminar" icon="ui-icon-trash" />
-                            </h:panelGrid>
+                <p:panel class="panelNagusia">
+                    <h:panelGrid columns="3" cellpadding="5">
+                        <h:outputLabel  value="Clente:" />                              
+                        <h:selectOneMenu value="#{productoBean.id}"  >
+                            <f:selectItems value="#{proveedorBean.proveedoreZerrenda}" var="p" itemValue="#{p.id}" itemLabel="#{p.nombre}" class="proveedor" />
+                        </h:selectOneMenu>   
+                        <p:commandButton value="Seleccionar" update="productsDT" icon="ui-icon-check" />
 
-                            <p:dataTable id="productsDT" var="products" value="#{productoBean.productuZerrendaHornitzailea(proveedor.id)}" selectionMode="single" selection="#{productoBean.selectedProduct}" rowKey="#{products.id}" rowStyleClass="#{products.activo eq false? 'highlight' : null}">>
-                                <f:facet name="header">
-                                    Productos
-                                </f:facet>          
-                                <p:column headerText="Referencia Irizar" width="12%" filterBy="#{products.refIrizar}"  filterMatchMode="contains" filterStyle="width: 75%;">
-                                    <h:outputText value="#{products.refIrizar}" />
-                                </p:column>
-                                <p:column headerText="Referencia" width="12%" filterBy="#{products.referencia}" filterMatchMode="contains" filterStyle="width: 75%;">
-                                    <h:outputText value="#{products.referencia}" />
-                                </p:column>
-                                <p:column headerText="Descripcion">
-                                    <h:outputText value="#{products.descripcion}" />
-                                </p:column>
-                                <p:column headerText="Longitud" width="10%">
-                                    <h:outputText value="#{products.longitud}" />
-                                </p:column>
-                                <p:column headerText="Acabado" width="15%">
-                                    <h:outputText value="#{products.acabado}" />
-                                </p:column>
-                                <p:column headerText="Unidades" width="10%" style="font-weight: bold" >
-                                    <h:outputText value="#{products.unidades}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:tab>
-                    </p:tabView>
+                    </h:panelGrid>
+                    <h:panelGrid class="hiruBotoiak" columns="3" cellpadding="5" >
+                        <p:commandButton value="Nuevo" icon="ui-icon-plusthick" />
+                        <p:commandButton value="Editar" process="productsDT" icon="ui-icon-pencil" update="productDetail" oncomplete="PF('productEdit').show()" />
+                        <p:commandButton value="Eliminar" icon="ui-icon-trash" />
+                    </h:panelGrid>
+
+                    <p:dataTable id="productsDT" var="products" value="#{productoBean.productuZerrendaHornitzailea(productoBean.id)}" selectionMode="single" selection="#{productoBean.selectedProduct}" rowKey="#{products.id}" rowStyleClass="#{products.activo eq false? 'highlight' : null}">>
+                        <f:facet name="header">
+                            Productos
+                        </f:facet>          
+                        <p:column headerText="Referencia Irizar" width="12%" filterBy="#{products.refIrizar}"  filterMatchMode="contains" filterStyle="width: 75%;">
+                            <h:outputText value="#{products.refIrizar}" />
+                        </p:column>
+                        <p:column headerText="Referencia" width="12%" filterBy="#{products.referencia}" filterMatchMode="contains" filterStyle="width: 75%;">
+                            <h:outputText value="#{products.referencia}" />
+                        </p:column>
+                        <p:column headerText="Descripcion">
+                            <h:outputText value="#{products.descripcion}" />
+                        </p:column>
+                        <p:column headerText="Longitud" width="10%">
+                            <h:outputText value="#{products.longitud}" />
+                        </p:column>
+                        <p:column headerText="Acabado" width="15%">
+                            <h:outputText value="#{products.acabado}" />
+                        </p:column>
+                        <p:column headerText="Unidades" width="10%" style="font-weight: bold" >
+                            <h:outputText value="#{products.unidades}" />
+                        </p:column>
+                    </p:dataTable>
                     <p:dialog header="Editar Producto" widgetVar="productEdit" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                            <p:outputPanel id="productDetail" style="text-align:center;">
-                                <p:panelGrid  style="width: 450px" columns="2" rendered="#{not empty productoBean.selectedProduct}" columnClasses="label,value">
-                                    <h:outputLabel for="referencia" value="Referencia:" />
-                                    <p:inplace id="referencia">
-                                        <p:inputText value="#{productoBean.selectedProduct.referencia}" />
-                                    </p:inplace>
-                                    <h:outputLabel for="refIrizar" value="Referencia Irizar:" />
-                                    <p:inplace id="refIrizar">
-                                        <p:inputText value="#{productoBean.selectedProduct.refIrizar}" />
-                                    </p:inplace>
-                                    <h:outputLabel  value="Proveedor:" />                              
-                                    <h:selectOneMenu value="#{productoBean.selectedProduct.proveedorId}">
-                                        <f:selectItems value="#{proveedorBean.proveedoreZerrenda}" var="prov" itemValue="#{prov.id}" itemLabel="#{prov.nombre}" />
-                                    </h:selectOneMenu>                                                            
-                                    <h:outputLabel for="descripcion" value="Descripción:" />
-                                    <p:inplace id="descripcion">
-                                        <p:inputText value="#{productoBean.selectedProduct.descripcion}" style="width: 80%" />
-                                    </p:inplace> 
-                                    <h:outputLabel for="longitud" value="Longitud:"/> 
-                                    <p:inplace id="longitud" >
-                                        <p:inputText value="#{productoBean.selectedProduct.longitud}" />
-                                    </p:inplace> 
-                                    <h:outputLabel for="acabado" value="Acabado:"/> 
-                                    <p:inplace id="acabado" >
-                                        <p:inputText value="#{productoBean.selectedProduct.acabado}" />
-                                    </p:inplace> 
-                                    <h:outputLabel for="unidades" value="Unidades:"/> 
-                                    <p:inplace id="unidades" >
-                                        <p:inputText value="#{productoBean.selectedProduct.unidades}" />
-                                    </p:inplace> 
-                                    <h:outputLabel value="activo"/>
-                                    <p:selectBooleanCheckbox value="#{productoBean.selectedProduct.activo}" />
-                                </p:panelGrid>
-                                <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
-                                    <p:commandButton value="Editar" actionListener="#{productoBean.productuaEditatu}" oncomplete="PF('productEdit').hide()" update="@form:tabview:productsDT" />
-                                </h:panelGrid>
-                            </p:outputPanel>
-                        </p:dialog>
-                </h:form>
-            </ui:define>
-        </ui:composition>
-    </h:body>
+                        <p:outputPanel id="productDetail" style="text-align:center;">
+                            <p:panelGrid  style="width: 450px" columns="2" rendered="#{not empty productoBean.selectedProduct}" columnClasses="label,value">
+                                <h:outputLabel for="referencia" value="Referencia:" />
+                                <p:inplace id="referencia">
+                                    <p:inputText value="#{productoBean.selectedProduct.referencia}" />
+                                </p:inplace>
+                                <h:outputLabel for="refIrizar" value="Referencia Irizar:" />
+                                <p:inplace id="refIrizar">
+                                    <p:inputText value="#{productoBean.selectedProduct.refIrizar}" />
+                                </p:inplace>
+                                <h:outputLabel  value="Proveedor:" />                              
+                                <h:selectOneMenu value="#{productoBean.selectedProduct.proveedorId}">
+                                    <f:selectItems value="#{proveedorBean.proveedoreZerrenda}" var="prov" itemValue="#{prov.id}" itemLabel="#{prov.nombre}" />
+                                </h:selectOneMenu>                                                            
+                                <h:outputLabel for="descripcion" value="Descripción:" />
+                                <p:inplace id="descripcion">
+                                    <p:inputText value="#{productoBean.selectedProduct.descripcion}" style="width: 80%" />
+                                </p:inplace> 
+                                <h:outputLabel for="longitud" value="Longitud:"/> 
+                                <p:inplace id="longitud" >
+                                    <p:inputText value="#{productoBean.selectedProduct.longitud}" />
+                                </p:inplace> 
+                                <h:outputLabel for="acabado" value="Acabado:"/> 
+                                <p:inplace id="acabado" >
+                                    <p:inputText value="#{productoBean.selectedProduct.acabado}" />
+                                </p:inplace> 
+                                <h:outputLabel for="unidades" value="Unidades:"/> 
+                                <p:inplace id="unidades" >
+                                    <p:inputText value="#{productoBean.selectedProduct.unidades}" />
+                                </p:inplace> 
+                                <h:outputLabel value="activo"/>
+                                <p:selectBooleanCheckbox value="#{productoBean.selectedProduct.activo}" />
+                            </p:panelGrid>
+                            <h:panelGrid columns="1" cellpadding="5" style="margin: 0 auto" >
+                                <p:commandButton value="Editar" actionListener="#{productoBean.productuaEditatu}" oncomplete="PF('productEdit').hide()" update="productsDT" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>

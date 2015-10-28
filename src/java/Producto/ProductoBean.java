@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 
@@ -19,7 +19,7 @@ import javax.faces.context.FacesContext;
  * @author Bingen
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ProductoBean implements java.io.Serializable {
 
     /**
@@ -29,14 +29,25 @@ public class ProductoBean implements java.io.Serializable {
     }
     
     private List<Producto> productoZerrenda;  
-    private Producto selectedProduct; //editatzeko haukeratutako produktua
+    private Producto selectedProduct;//editatzeko haukeratutako produktua
     private Producto newProduct= new Producto();//Productu berria sortzeko
+    
+    private int id = 1;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Producto getSelectedProduct() {
         return selectedProduct;
     }
 
     public void setSelectedProduct(Producto selectedProduct) {
+        System.out.println("Selected: " + selectedProduct );
         this.selectedProduct = selectedProduct;
     }
 
@@ -64,6 +75,7 @@ public class ProductoBean implements java.io.Serializable {
     }
         //hornitzaile bakoitzaren produktu zerrenda 
     public List<Producto> productuZerrendaHornitzailea(int id){
+        
         List<Producto> emaitza = new ArrayList();
         for (Producto p: getProductoZerrenda()){
             if(p.getProveedorId()==id){
@@ -76,19 +88,23 @@ public class ProductoBean implements java.io.Serializable {
     
     //Productuaren datuak aldatzeko
     public void productuaEditatu() {
+        System.out.println("Productua editatu: "+ getSelectedProduct());
         ProductoDao.productEdit(selectedProduct);
+        //productoZerrendaLortu();
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editado", "El producto ha sido editado!");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     //Productu berria sortzeko
     public void productuBerria(){
         ProductoDao.saveProduct(newProduct);
+        //productoZerrendaLortu();
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Has creado un nuevo producto!");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     // aukeratutako productua ezabatzeko
     public void productuaEzabatu(){
         ProductoDao.deleteProduct(selectedProduct);
+        //productoZerrendaLortu();
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "El producto ha sido eliminado!");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
