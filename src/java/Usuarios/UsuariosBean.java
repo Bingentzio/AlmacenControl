@@ -119,24 +119,18 @@ public class UsuariosBean implements java.io.Serializable {
 
     //erabiltzailearen datuak aldatzeko
     public void erabiltzaileaEditatu() {
-        System.out.println("Selected: "+ selectedUser);
         UsuariosDao.userEdit(selectedUser);
         erabiltzaileZerrendaLortu();
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editado", "El usuario ha sido editado!");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     //erabiltzaile berria sortzeko
     public void erabiltzaileBerria(){
+        System.out.println(newUser.getId());
         UsuariosDao.saveUser(newUser);
         erabiltzaileZerrendaLortu();
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Has creado un nuevo usuario!");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     // aukeratutako erabiltzailea ezabatzeko
     public void erabiltzaileaEzabatu(){
         UsuariosDao.deleteUser(selectedUser);
         erabiltzaileZerrendaLortu();
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "El usuario ha sido eliminado!");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

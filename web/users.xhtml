@@ -33,10 +33,10 @@
                             <h:outputText value="#{users.username}" />
                         </p:column>
                         <p:column headerText="Nombre">
-                            <h:outputText value="#{users.username}" />
+                            <h:outputText value="#{users.nombre}" />
                         </p:column>
                         <p:column headerText="Apellido">
-                            <h:outputText value="#{users.username}" />
+                            <h:outputText value="#{users.apellido}" />
                         </p:column>
                         <p:column headerText="Email">
                             <h:outputText value="#{users.email}" />
@@ -73,7 +73,7 @@
                                 <h:outputLabel value=""/>
                             </p:panelGrid>
                             <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
-                                <p:commandButton value="Editar" actionListener="#{usuariosBean.erabiltzaileaEditatu}" oncomplete="PF('userDialog').hide()" update="usersDT" />
+                                <p:commandButton value="Editar" actionListener="#{usuariosBean.erabiltzaileaEditatu}" oncomplete="PF('userDialog').hide()" update="usersDT :mensajes" />
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:dialog>
@@ -98,17 +98,17 @@
                                 <h:outputLabel value=""/>
                             </p:panelGrid>
                             <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
-                                <p:commandButton value="Guardar" actionListener="#{usuariosBean.erabiltzaileBerria}" oncomplete="PF('userDialogNew').hide()" update="usersDT" />
+                                <p:commandButton value="Guardar" actionListener="#{usuariosBean.erabiltzaileBerria}" oncomplete="PF('userDialogNew').hide()" update="usersDT :mensajes" />
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:dialog>
                     <p:dialog header="Eliminar Usuario" widgetVar="userDialogDel" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                         <p:outputPanel id="userDetailDel" style="text-align:center;">
                             <p:panelGrid  style="width: 300px" columns="1" >
-                                ¿Seguro que deseas eliminar al usuario <b>#{usuariosBean.selectedUser.username}</b>?
+                                ¿Seguro que desea eliminar al usuario <b>#{usuariosBean.selectedUser.username}</b>?
                             </p:panelGrid>
                             <h:panelGrid  columns="2" cellpadding="5" style="margin: 0 auto">
-                                <p:commandButton value="Si" actionListener="#{usuariosBean.erabiltzaileaEzabatu}" oncomplete="PF('userDialogDel').hide()" update="usersDT"/>
+                                <p:commandButton value="Si" actionListener="#{usuariosBean.erabiltzaileaEzabatu}" oncomplete="PF('userDialogDel').hide()" update="usersDT :mensajes"/>
                                 <p:commandButton value="No"  oncomplete="PF('userDialogDel').hide()"/>
                             </h:panelGrid>
                         </p:outputPanel>

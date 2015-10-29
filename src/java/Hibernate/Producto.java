@@ -1,5 +1,5 @@
 package Hibernate;
-// Generated 23-oct-2015 10:33:54 by Hibernate Tools 4.3.1
+// Generated 29-oct-2015 12:48:33 by Hibernate Tools 4.3.1
 
 
 
@@ -98,11 +98,10 @@ public class Producto  implements java.io.Serializable {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-
     public boolean isActivo() {
-        return activo;
+        return this.activo;
     }
-
+    
     public void setActivo(boolean activo) {
         this.activo = activo;
     }

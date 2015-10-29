@@ -38,6 +38,6 @@ public class ProveedorBean implements java.io.Serializable {
     //Proveedoreen zerrenda lortu
     public void proveedoreZerrendaLortu() {
         proveedoreZerrenda = ProveedorDao.proveedorList();
-        System.out.println("Proveedore Zerrenda");
+        System.out.println("Proveedore Zerrenda Lortu");
     }
 }

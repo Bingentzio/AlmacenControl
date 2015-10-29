@@ -9,7 +9,7 @@
     <ui:composition template="newTemplate.xhtml">
         <ui:define name="content">
             <p:growl id="mensajes" showDetail="true" life="2000" />
-            <h:form onclick="#{proveedorBean.proveedoreZerrendaLortu()}#{productoBean.productoZerrendaLortu()}">                
+            <h:form >                
                 <h:panelGrid  columns="2" cellpadding="5"  class="right_button">  
                     <p:commandButton action="#{usuariosBean.adminDa}" icon="ui-icon-gear" update=":mensajes"/>
                     <p:commandButton actionListener="#{usuariosBean.logout}" action="index" icon="ui-icon-power"/>
@@ -26,19 +26,19 @@
                 <p:panel class="panelNagusia">
                     <h:panelGrid columns="3" cellpadding="5">
                         <h:outputLabel  value="Clente:" />                              
-                        <h:selectOneMenu value="#{productoBean.id}"  >
+                        <h:selectOneMenu value="#{productoBean.idProv}"  >
                             <f:selectItems value="#{proveedorBean.proveedoreZerrenda}" var="p" itemValue="#{p.id}" itemLabel="#{p.nombre}" class="proveedor" />
                         </h:selectOneMenu>   
                         <p:commandButton value="Seleccionar" update="productsDT" icon="ui-icon-check" />
 
                     </h:panelGrid>
                     <h:panelGrid class="hiruBotoiak" columns="3" cellpadding="5" >
-                        <p:commandButton value="Nuevo" icon="ui-icon-plusthick" />
+                        <p:commandButton value="Nuevo" process="productsDT" icon="ui-icon-plusthick" update="productDetailNew" oncomplete="PF('productDialogNew').show()" />
                         <p:commandButton value="Editar" process="productsDT" icon="ui-icon-pencil" update="productDetail" oncomplete="PF('productEdit').show()" />
-                        <p:commandButton value="Eliminar" icon="ui-icon-trash" />
+                        <p:commandButton value="Eliminar" process="productsDT" icon="ui-icon-trash" update="productDetailDel" oncomplete="PF('productDialogDel').show()" />
                     </h:panelGrid>
 
-                    <p:dataTable id="productsDT" var="products" value="#{productoBean.productuZerrendaHornitzailea(productoBean.id)}" selectionMode="single" selection="#{productoBean.selectedProduct}" rowKey="#{products.id}" rowStyleClass="#{products.activo eq false? 'highlight' : null}">>
+                    <p:dataTable id="productsDT" var="products" value="#{productoBean.productuZerrendaHornitzailea(productoBean.idProv)}" selectionMode="single" selection="#{productoBean.selectedProduct}" rowKey="#{products.id}" rowStyleClass="#{products.activo eq false? 'highlight' : null}">>
                         <f:facet name="header">
                             Productos
                         </f:facet>          
@@ -64,7 +64,7 @@
                     <p:dialog header="Editar Producto" widgetVar="productEdit" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                         <p:outputPanel id="productDetail" style="text-align:center;">
                             <p:panelGrid  style="width: 450px" columns="2" rendered="#{not empty productoBean.selectedProduct}" columnClasses="label,value">
-                                <h:outputLabel for="referencia" value="Referencia:" />
+                             <h:outputLabel for="referencia" value="Referencia:" />
                                 <p:inplace id="referencia">
                                     <p:inputText value="#{productoBean.selectedProduct.referencia}" />
                                 </p:inplace>
@@ -94,13 +94,56 @@
                                 </p:inplace> 
                                 <h:outputLabel value="activo"/>
                                 <p:selectBooleanCheckbox value="#{productoBean.selectedProduct.activo}" />
+                                
                             </p:panelGrid>
                             <h:panelGrid columns="1" cellpadding="5" style="margin: 0 auto" >
-                                <p:commandButton value="Editar" actionListener="#{productoBean.productuaEditatu}" oncomplete="PF('productEdit').hide()" update="productsDT" />
+                                <p:commandButton value="Editar" actionListener="#{productoBean.productuaEditatu}" oncomplete="PF('productEdit').hide()" update="productsDT :mensajes"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog header="Producto Nuevo" widgetVar="productDialogNew" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="productDetailNew" style="text-align:center;">
+                            <p:panelGrid  style="width: 450px" columns="2" columnClasses="label,value">
+                                   <h:outputLabel value="Referencia:" />
+                                   <p:inputText label="referencia" value="#{productoBean.newProduct.referencia}" />
+                                <h:outputLabel value="Referencia Irizar:" />
+                                    <p:inputText label="refIrizar" value="#{productoBean.newProduct.refIrizar}" />
+                                <h:outputLabel  value="Proveedor:" />                              
+                                <h:selectOneMenu label="proveedorId" value="#{productoBean.newProduct.proveedorId}">
+                                    <f:selectItems value="#{proveedorBean.proveedoreZerrenda}" var="prov" itemValue="#{prov.id}" itemLabel="#{prov.nombre}" />
+                                </h:selectOneMenu>                                                            
+                                <h:outputLabel value="Descripción:" />
+                                <p:inputText label="descripcion" value="#{productoBean.newProduct.descripcion}" style="width: 80%" />
+                                <h:outputLabel value="Longitud:"/> 
+                                    <p:inputText label="longitud" value="#{productoBean.newProduct.longitud}" />
+                                <h:outputLabel value="Acabado:"/> 
+                                <p:inputText label="acabado" value="#{productoBean.newProduct.acabado}" />
+                                <h:outputLabel value="Unidades:"/> 
+                                <p:inputText label="unidades" value="#{productoBean.newProduct.unidades}" /> 
+                                <h:outputLabel value="activo"/>
+                                <p:selectBooleanCheckbox label="activo" value="#{productoBean.newProduct.activo}" />
+                            </p:panelGrid>
+                            <h:panelGrid   columns="1" cellpadding="5" style="margin: 0 auto" >
+                                <p:commandButton value="Guardar" actionListener="#{productoBean.productuBerria}" oncomplete="PF('productDialogNew').hide()" update="productsDT :mensajes" />
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog header="Eliminar Producto" widgetVar="productDialogDel" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="productDetailDel" style="text-align:center;">
+                            <p:panelGrid  style="width: 300px" columns="1" >
+                                <p>¿Seguro que desea eliminar el producto <b>#{productoBean.selectedProduct.referencia}</b>?</p>
+                                <p>Este producto se eliminara de la Base de datos y no podrás
+                                    recuperarlo.</p>
+                                
+                            </p:panelGrid>
+                            <h:panelGrid  columns="2" cellpadding="5" style="margin: 0 auto">
+                                <p:commandButton value="Si" actionListener="#{productoBean.productuaEzabatu}" oncomplete="PF('productDialogDel').hide()" update="productsDT :mensajes"/>
+                                <p:commandButton value="No"  oncomplete="PF('productDialogDel').hide()"/>
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:dialog>
                 </p:panel>
+                
             </h:form>
         </ui:define>
     </ui:composition>

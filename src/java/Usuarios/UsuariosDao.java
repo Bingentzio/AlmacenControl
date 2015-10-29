@@ -43,6 +43,8 @@ public class UsuariosDao {
             session.beginTransaction();
             session.update(selectedUser);
             session.getTransaction().commit();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editado", "El usuario ha sido editado!");
+            FacesContext.getCurrentInstance().addMessage(null, message);
         } catch (Exception e) {
             System.err.print(e);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(editUser)");
@@ -57,6 +59,8 @@ public class UsuariosDao {
             session.beginTransaction();
             session.save(newUser);
             session.getTransaction().commit();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Has creado un nuevo usuario!");
+            FacesContext.getCurrentInstance().addMessage(null, message);
         } catch (Exception e) {
             System.err.print(e);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(newUser)");
@@ -71,6 +75,8 @@ public class UsuariosDao {
             session.beginTransaction();
             session.delete(selectedUser);
             session.getTransaction().commit();
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "El usuario ha sido eliminado!");
+            FacesContext.getCurrentInstance().addMessage(null, message);
         } catch (Exception e) {
             System.err.print(e);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error(delUser)");
